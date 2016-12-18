@@ -1,0 +1,61 @@
+/* label color */
+
+.input-field label {
+    color: $form_input_color;
+}
+
+
+/* label focus color */
+
+.input-field input:focus + label {
+    color: $form_input_color;
+}
+
+
+/* label underline focus color */
+
+.input-field input:focus {
+    border-bottom: 1px solid $form_input_color;
+    box-shadow: 0 1px 0 0 $form_input_color;
+}
+
+
+/* valid color */
+
+.input-field input.valid {
+    border-bottom: 1px solid $form_input_color;
+    box-shadow: 0 1px 0 0 $form_input_color;
+}
+
+
+/* invalid color */
+
+.input-field input.invalid {
+    border-bottom: 1px solid $form_input_color;
+    box-shadow: 0 1px 0 0 $form_input_color;
+}
+
+
+/* icon prefix focus color */
+
+.input-field .prefix.active {
+    color: $form_input_color;
+}
+
+// radio styles
+[type="radio"]:checked+label:after,
+[type="radio"].with-gap:checked+label:before,
+[type="radio"].with-gap:checked+label:after {
+    border: 2px solid $form_input_color;
+}
+
+[type="radio"]:checked+label:after,
+[type="radio"].with-gap:checked+label:after {
+    background-color: $form_input_color;
+}
+
+form {
+    label {
+        color: inherit;
+    }
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Convert csv, tsv, XML to JSON. You can also view the JSON as bar charts and line charts.">
+    <meta name="keywords" content="csv, tsv, xls, excel, json, charts, bar chart, line chart, graphs">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>excelJSON - Convert csv, tsv to JSON; view JSON as bar and line charts</title>
+    <link rel="stylesheet" href="css/material-icon.css" />
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="">
+    <nav class="" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">excelJSON</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="welcome-banner">
+        <div class="container">
+            <div class="row">
+                <h5>
+                Convert csv, tsv to JSON; JSON to csv, tsv. You can also view the JSON as bar charts and line charts instantly.
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div id="upload-pane" class="section no-pad-bot">
+        <div class="container center">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card brown lighten-5">
+                        <div class="card-content">
+                            <span class="card-title">
+                                Upload Files
+                            </span>
+                            <p>
+                                Drag and drop files in this rectangle, or click the button below to upload files. 
+                                <div class="light">
+                                    (You can upload <strong>csv</strong> &amp; <strong>tsv</strong> files to convert to JSON.)
+                                </div>
+                            </p>
+                            <div class="container">
+                                <div class="row no-bottom-margin">
+                                    <div class="col s12">
+                                        <div class="card-panel brown lighten-4">
+                                            File Details?        
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div>
+                                <button id="upload-file" type="button" class="waves-effect waves-light btn btn-large brown darken-1">
+                                    <i class="material-icons left">file_upload</i> Click to upload files
+                                </button>
+                            </div>
+                            <div>
+                                <input type="file" id="file-input" name="file-input" class="hide">
+                            </div>
+                            <div class="center">
+                                <form id="json-conversion-options" action="#">
+                                    <p>
+                                        <input class="with-gap" name="json-options" type="radio" id="with-columns" checked="checked" />
+                                        <label for="with-columns">
+                                            First row contains Column Names. 
+                                            <span class="light">(column names will become JSON attributes)</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <input class="with-gap" name="json-options" type="radio" id="without-columns" />
+                                        <label for="without-columns">
+                                            First row does not contain Column Names. 
+                                            <span class="light">(will result in an array of arrays)</span>
+                                        </label>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="json-pane" class="section no-pad-bot">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card brown lighten-5">
+                        <div class="card-content">
+                            <div class="card-title center">
+                                JSON
+                            </div>
+                            <div class="nav-wrapper col s12 brown darken-1">
+                                <div class="col s8">
+                                    <ul class="tabs tabs-transparent left">
+                                        <li class="tab">
+                                            <a href="#edit-window">Edit</a>
+                                        </li>
+                                        <li class="tab">
+                                            <a class="active" href="#preview-window">Preview</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col s4">
+                                    <button id="copy-json" type="button" class="right waves-effect waves-light btn btn-small brown lighten-4 brown-text">
+                                        <i class="material-icons right">input</i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="edit-window" class="col s12">
+                                    <textarea class="json-window">edit window</textarea>
+                                </div>
+                                <div id="preview-window" class="col s12">
+                                    <div class="json-window">
+                                        Preview Window
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-bottom-margin">
+                                <div class="col s12 center">
+                                    <div class="card-panel green white-text">
+                                        Valid JSON
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action center">
+                            <div class="light">
+                                You can enter your own valid JSON in edit window and download as csv, tsv.
+                            </div>
+                            <button id="download-csv" type="button" class="waves-effect waves-light btn brown darken-1">
+                                <i class="material-icons left">file_download</i> Download as CSV
+                            </button>
+                            <button id="download-tsv" type="button" class="waves-effect waves-light btn brown darken-1">
+                                <i class="material-icons left">file_download</i> Download as TSV
+                            </button>
+                            <div class="light">
+                                Scroll down to view the JSON as bar charts and line charts (experimental).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="charts-pane" class="section no-pad-bot">
+        <div class="container center">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card brown lighten-5">
+                        <div class="card-content">
+                            <span class="card-title">
+                                Charts
+                            </span>
+                            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">This is a link</a>
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="">Company Bio</h5>
+                    <p class="text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="">Settings</h5>
+                    <ul>
+                        <li><a class="" href="#!">Link 1</a></li>
+                        <li><a class="" href="#!">Link 2</a></li>
+                        <li><a class="" href="#!">Link 3</a></li>
+                        <li><a class="" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="">Connect</h5>
+                    <ul>
+                        <li><a class="" href="#!">Link 1</a></li>
+                        <li><a class="" href="#!">Link 2</a></li>
+                        <li><a class="" href="#!">Link 3</a></li>
+                        <li><a class="" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="red-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
+        </div>
+    </footer>
+    <!--  Scripts-->
+    <script src="js/vue.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/d3.v4.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/filereader.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

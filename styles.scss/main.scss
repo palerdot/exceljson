@@ -1,0 +1,37 @@
+@import "_colors";
+@import "_general";
+@import "_forms";
+
+nav, footer {
+    background-color: $nav_color !important;
+    
+    & * {
+        color: $text_color !important;
+        color: $nav_text_color !important;        
+    }
+}
+
+.section {
+    .card-title {
+        font-weight: bold;
+    }
+}
+
+#json-pane {
+    .nav-wrapper {
+        padding: 7px;
+
+        .btn {
+            margin-top: 5px;
+        }
+    }
+
+    .json-window {
+        padding: 7px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+
+        border: thin solid $border_color;
+    }
+}

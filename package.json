@@ -1,0 +1,30 @@
+{
+  "name": "exceljson",
+  "version": "0.1.0",
+  "description": "convert csv, tsv, xml to json; json to charts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/palerdot/exceljson.git"
+  },
+  "keywords": [
+    "csv",
+    "tsv",
+    "json"
+  ],
+  "author": "Arun <palerdot@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/palerdot/exceljson/issues"
+  },
+  "homepage": "https://github.com/palerdot/exceljson#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "gulp-sass": "^3.0.0"
+  }
+}
