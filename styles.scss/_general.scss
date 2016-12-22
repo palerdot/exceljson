@@ -6,6 +6,12 @@ body {
     margin-bottom: 0 !important;
 }
 
+.disabled {
+    a {
+        opacity: 0.4;
+    }
+}
+
 ::-webkit-scrollbar {
     height: 7px;
     width: 7px;
