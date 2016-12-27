@@ -70,6 +70,7 @@
 	    _app2.default.init();
 	    // $("#file-input").fileReaderJS(options);
 	    // init the "materialize tabs" manually as vue messes up with initial stuff
+	    // console.log("initing tabs");
 	    $('.tabs').tabs();
 	});
 
@@ -241,11 +242,18 @@
 	                isEditMode: function isEditMode() {
 	                    console.log("edit mode ? ", this.mode, this.mode == "edit");
 	                    return {
-	                        active: this.mode === "edit"
+	                        active: false
 	                    };
 	                },
 
 	                isPreviewMode: function isPreviewMode() {
+	                    console.log("preview mode ? ", this.mode, this.mode == "preview");
+	                    return {
+	                        active: true
+	                    };
+	                },
+
+	                isPreviewModeActive: function isPreviewModeActive() {
 	                    console.log("preview mode ? ", this.mode, this.mode == "preview");
 	                    // note we have to disable the preview mode if not valid json
 	                    return {
@@ -288,8 +296,19 @@
 	                    return {
 	                        "message": "Hello!"
 	                    };
+	                }
+	            },
+
+	            methods: {
+
+	                getJSON: function getJSON() {
+	                    return _lodash2.default.isEmpty(this.json) ? this.defaultJSON : this.json;
 	                },
-	                previewJSON: function previewJSON() {
+
+	                // NOTE:
+	                // QUIRK: for the preview json rendering to work correctly, we are injecting the actual html using jquery
+	                // as vue does not allow displaying of html nodes.
+	                getPreviewJSON: function getPreviewJSON() {
 	                    var formatter = new _jsonFormatterJs2.default(this.getJSON(), 2, {
 	                        hoverPreviewEnabled: false,
 	                        hoverPreviewArrayCount: 100,
@@ -298,17 +317,14 @@
 	                        animateOpen: true,
 	                        animateClose: true
 	                    });
-	                    // return "<strong>Porumai</strong>"
-	                    var html = $(formatter.render()).prop("outerHTML");
-	                    // $("#preview-window .json-window").html( html );
+
+	                    var html = $(formatter.render()).clone(true).html();
+	                    // var html = $( formatter.render() ).html();
+	                    // var html = formatter.render();
+	                    // NOTE: vue does not allow html with event bindings; appending the html blindly
+	                    $("#preview-window .json-window").html(formatter.render());
+	                    // console.log("rendering html ", html, formatter, formatter.render(), $("#preview-window .json-window").html());
 	                    return html;
-	                }
-	            },
-
-	            methods: {
-
-	                getJSON: function getJSON() {
-	                    return _lodash2.default.isEmpty(this.json) ? this.defaultJSON : this.json;
 	                },
 
 	                handleJSONChange: _lodash2.default.debounce(function (e) {
@@ -481,6 +497,7 @@
 	    },
 
 	    processFileContent: function processFileContent(content) {
+	        var _this2 = this;
 
 	        console.log("processing file content");
 
@@ -514,7 +531,9 @@
 
 	        Materialize.toast("JSON created!", 3000);
 
-	        _lodash2.default.defer(this.scrollToJSONPane, 500);
+	        _lodash2.default.defer(function () {
+	            return _this2.scrollToJSONPane();
+	        }, 500);
 
 	        return;
 	    },
@@ -564,6 +583,11 @@
 	        $("body").animate({
 	            scrollTop: scrollTo
 	        }, 550);
+
+	        // this mode will not affect anything
+	        this.jsonPane.mode = "preview";
+	        // for now let us manually change to preview window using materialize plugin
+	        $('ul.tabs').tabs('select_tab', 'preview-window');
 	    },
 
 	    getFileReaderOptions: function getFileReaderOptions() {

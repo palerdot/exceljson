@@ -136,11 +136,18 @@ var App = {
                 isEditMode: function () {
                     console.log("edit mode ? ", this.mode, (this.mode == "edit"));
                     return {
-                        active: (this.mode === "edit")
+                        active: false
                     };
                 },
 
                 isPreviewMode: function () {
+                    console.log("preview mode ? ", this.mode, (this.mode == "preview"));
+                    return {
+                        active: true
+                    };
+                },
+
+                isPreviewModeActive: function () {
                     console.log("preview mode ? ", this.mode, (this.mode == "preview"));
                     // note we have to disable the preview mode if not valid json
                     return {
@@ -183,8 +190,19 @@ var App = {
                     return {
                         "message": "Hello!"
                     };
+                }
+            },
+
+            methods: {
+
+                getJSON: function () {
+                    return _.isEmpty( this.json ) ? this.defaultJSON : this.json;
                 },
-                previewJSON: function () {
+
+                // NOTE:
+                // QUIRK: for the preview json rendering to work correctly, we are injecting the actual html using jquery
+                // as vue does not allow displaying of html nodes.
+                getPreviewJSON: function () {
                     const formatter = new JSONFormatter( this.getJSON(), 2, {
                         hoverPreviewEnabled: false,
                         hoverPreviewArrayCount: 100,
@@ -193,17 +211,14 @@ var App = {
                         animateOpen: true,
                         animateClose: true
                     } );
-                    // return "<strong>Porumai</strong>"
-                    var html = $( formatter.render() ).prop("outerHTML");
-                    // $("#preview-window .json-window").html( html );
+
+                    var html = $( formatter.render() ).clone(true).html();
+                    // var html = $( formatter.render() ).html();
+                    // var html = formatter.render();
+                    // NOTE: vue does not allow html with event bindings; appending the html blindly
+                    $("#preview-window .json-window").html( formatter.render() );
+                    // console.log("rendering html ", html, formatter, formatter.render(), $("#preview-window .json-window").html());
                     return html;
-                }
-            },
-
-            methods: {
-
-                getJSON: function () {
-                    return _.isEmpty( this.json ) ? this.defaultJSON : this.json;
                 },
 
                 handleJSONChange: _.debounce( (e) => {
@@ -413,7 +428,7 @@ var App = {
 
         Materialize.toast("JSON created!", 3000);
 
-        _.defer( this.scrollToJSONPane, 500 );
+        _.defer( () => this.scrollToJSONPane(), 500 );
 
         return;
     },
@@ -463,6 +478,11 @@ var App = {
         $("body").animate({
             scrollTop: scrollTo
         }, 550);
+
+        // this mode will not affect anything
+        this.jsonPane.mode = "preview";
+        // for now let us manually change to preview window using materialize plugin
+        $('ul.tabs').tabs('select_tab', 'preview-window');
 
     },
 

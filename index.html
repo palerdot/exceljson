@@ -17,9 +17,16 @@
 <body class="">
     <nav class="" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo">excelJSON</a>
+            <a id="logo-container" href="#" class="brand-logo">
+                <img src="images/logo.png" />
+                excelJSON
+            </a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">Navbar Link</a></li>
+                <li>
+                    <a href="#">
+                        Navbar Link
+                    </a>
+                </li>
             </ul>
             <ul id="nav-mobile" class="side-nav">
                 <li><a href="#">Navbar Link</a></li>
@@ -156,8 +163,8 @@
                                         <li class="tab">
                                             <a v-bind:class="isEditMode" href="#edit-window">Edit</a>
                                         </li>
-                                        <li v-bind:class="isPreviewMode">
-                                            <a href="#preview-window">Preview</a>
+                                        <li v-bind:class="isPreviewModeActive">
+                                            <a class="active" v-bind:class="isPreviewMode" href="#preview-window">Preview</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -177,7 +184,7 @@
                                     ></textarea>
                                 </div>
                                 <div id="preview-window" class="col s12">
-                                    <div class="json-window" v-html="previewJSON">{{ previewJSON }}</div>
+                                    <div class="json-window" v-html="getPreviewJSON()"></div>
                                 </div>
                             </div>
                             <div class="row no-bottom-margin">

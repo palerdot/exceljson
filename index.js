@@ -18,5 +18,6 @@ $(document).ready(function() {
     App.init();
     // $("#file-input").fileReaderJS(options);
     // init the "materialize tabs" manually as vue messes up with initial stuff
+    // console.log("initing tabs");
     $('.tabs').tabs();
 });
