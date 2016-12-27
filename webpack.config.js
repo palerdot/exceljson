@@ -3,7 +3,7 @@ var webpack = require("webpack");
 module.exports = {
     entry: './index.js',
     output: {
-        filename: 'bundle.js'
+        filename: 'exceljson.js'
     },
     module: {
         loaders: [{
