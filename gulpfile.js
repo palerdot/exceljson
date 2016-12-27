@@ -8,10 +8,15 @@ var webpack = require('webpack-stream');
 var $ = gulpLoadPlugins();
 
 gulp.task('webpack', function() {
+
+    var is_production = true;
+
+    var uglify_options = { compress: { drop_console: is_production ? true : false } };
+
     return gulp.src('./index.js')
         .pipe( webpack( require('./webpack.config.js') ) )
         .pipe($.if('*.js', $.sourcemaps.init()))
-        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.js', $.uglify( uglify_options )))
         .pipe($.if('*.js', $.sourcemaps.write('.')))
         .pipe(gulp.dest('dist/'));
 });
