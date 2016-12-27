@@ -9,7 +9,7 @@
 // import $ from "jquery";
 import App from "./js/app";
 
-window.App = App;
+// window.App = App;
 
 console.log("this is ", this, window);
 
@@ -20,4 +20,6 @@ $(document).ready(function() {
     // init the "materialize tabs" manually as vue messes up with initial stuff
     // console.log("initing tabs");
     $('.tabs').tabs();
+    // for now let us manually change to preview window using materialize plugin
+    $('ul.tabs').tabs('select_tab', 'preview-window');
 });

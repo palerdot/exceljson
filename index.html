@@ -28,7 +28,7 @@
                     </a>
                 </li>
             </ul>
-            <ul id="nav-mobile" class="side-nav">
+            <ul id="nav-mobile" class="side-nav hide">
                 <li><a href="#">Navbar Link</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -161,10 +161,10 @@
                                 <div class="col s8">
                                     <ul class="tabs tabs-transparent left">
                                         <li class="tab">
-                                            <a v-bind:class="isEditMode" href="#edit-window">Edit</a>
+                                            <a href="#edit-window">Edit</a>
                                         </li>
                                         <li v-bind:class="isPreviewModeActive">
-                                            <a class="active" v-bind:class="isPreviewMode" href="#preview-window">Preview</a>
+                                            <a class="active" href="#preview-window">Preview</a>
                                         </li>
                                     </ul>
                                 </div>
