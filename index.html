@@ -93,7 +93,7 @@
             <ul id="nav-mobile" class="side-nav hide">
                 <li><a href="#">Navbar Link</a></li>
             </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="nav-mobile" class="button-collapse hide"><i class="material-icons">menu</i></a>
         </div>
     </nav>
     <div class="section no-pad-bot" id="welcome-banner">
@@ -271,6 +271,13 @@
                 </div>
             </div>
         </div>
+        <div class="hide-on-small-only a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="left:0px; top:150px;">
+            <a class="a2a_button_twitter"></a>
+            <a class="a2a_button_reddit"></a>
+            <a class="a2a_button_facebook"></a>
+            <a class="a2a_button_google_plus"></a>
+            <a class="a2a_button_pinterest"></a>
+        </div>
     </div>
     <!-- END: JSON Pane -->
     <!-- START: Footer Pane -->
@@ -278,38 +285,54 @@
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="">About</h5>
-                    <p class="text-lighten-4">
-                        ExcelJSON is an utility tool to convert CSV, TSV to JSON, and JSON back to CSV, TSV. This tool is mobile friendly and uses browser's modern File API to read and process uploaded files, which is both fast and secure.
-                    </p>
+                    <div class="col s12 thin-bottom-border">
+                        <h5 class="">About</h5>
+                        <p class="text-lighten-4">
+                            ExcelJSON is an utility tool to convert CSV, TSV to JSON, and JSON back to CSV, TSV. This tool is mobile friendly and uses browser's modern File API to read and process uploaded files, which is both fast and secure.
+                        </p>    
+                    </div>
+                    <div class="col s12">
+                        <h6 class="">Created By</h6>
+                        <h4 class="text-lighten-4">
+                            <a class="red-text text-lighten-4" href="http://palerdot.in" target="_blank">palerdot</a>
+                        </h4>
+                    </div>
                 </div>
-                <div class="col l3 s12 hide">
-                    <h5 class="">Settings</h5>
+                <div class="col l3 s12">
+                    <h5 class="">Partner Sites</h5>
                     <ul>
-                        <li><a class="" href="#!">Link 1</a></li>
-                        <li><a class="" href="#!">Link 2</a></li>
-                        <li><a class="" href="#!">Link 3</a></li>
-                        <li><a class="" href="#!">Link 4</a></li>
+                        <li><a class="" href="http://hotcoldtyping.com">Hotcold Typing</a></li>
+                        <li><a class="" href="http://remindoro.com">Remindoro</a></li>
                     </ul>
                 </div>
-                <div class="col l3 s12 hide">
-                    <h5 class="">Connect</h5>
-                    <ul>
-                        <li><a class="" href="#!">Link 1</a></li>
-                        <li><a class="" href="#!">Link 2</a></li>
-                        <li><a class="" href="#!">Link 3</a></li>
-                        <li><a class="" href="#!">Link 4</a></li>
-                    </ul>
+                <div class="col l3 s12">
+                    <h5 class="">Share</h5>
+                    <!-- AddToAny BEGIN -->
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                        <a class="a2a_button_facebook"></a>
+                        <a class="a2a_button_twitter"></a>    
+                        <a class="a2a_button_google_plus"></a>
+                        <a class="a2a_button_pinterest"></a>
+                        <a class="a2a_button_reddit"></a>
+                        <a class="a2a_button_linkedin"></a>
+                        <a class="a2a_button_wordpress"></a>
+                        <a class="a2a_button_whatsapp"></a>
+                    </div>
+                    <!-- AddToAny END -->
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Created by <a class="red-text text-lighten-3" href="http://palerdot.in" target="_blank">palerdot</a>
+                Made with 
+                    <a class="red-text text-lighten-3" href="https://vuejs.org/" target="_blank">VueJS</a>, 
+                    <a class="red-text text-lighten-3" href="https://d3js.org/" target="_blank">D3JS</a>,
+                    <a class="red-text text-lighten-3" href="materializecss.com" target="_blank">MaterializeCSS</a>. 
             </div>
         </div>
     </footer>
     <!-- END: Footer Pane -->
+
     <!--  Scripts-->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script> -->
@@ -323,7 +346,11 @@
     <script src="js/vue.min.js"></script> -->
     <!-- <script src="js/main.js"></script> -->
     <script src="dist/exceljson.js"></script>
+
     <script src="dist/google-analytics.js"></script>
+    <script async src="https://static.addtoany.com/menu/page.js"></script>
+
+
 
 </body>
 

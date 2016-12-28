@@ -12,6 +12,10 @@ body {
     }
 }
 
+.thin-bottom-border {
+    border-bottom: thin solid $border_color;
+}
+
 ::-webkit-scrollbar {
     height: 7px;
     width: 7px;
