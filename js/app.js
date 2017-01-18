@@ -374,7 +374,7 @@ var App = {
     validateFileContent: function (file, content) {
 
         // only csv, tsv files are allowed
-        var valid_file_types = ["text/csv", "text/tab-separated-values"];
+        var valid_file_types = ["text/comma-separated-values", "text/csv", "text/tsv", "text/tab-separated-values"];
 
         var file_type = file && file.type,
             file_valid = _.includes( valid_file_types, file_type );
@@ -389,7 +389,7 @@ var App = {
             // proceed to process the file content
             this.processFileContent( content );
         } else {
-            console.log("FILE NOT VALID. Only CSV and TSV files are allowed");
+            console.log("FILE NOT VALID. Only CSV and TSV files are allowed ", file);
             // update the file valid status
             this.uploadPane.fileValid = false;
         }
