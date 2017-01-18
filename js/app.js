@@ -403,6 +403,8 @@ var App = {
         var file_type = this.uploadPane.getFileType(),
             json = {};
 
+        console.log("PARSE start");
+
         switch (file_type) {
             case "csv":
                 json = this.processCSVFile( content );
@@ -416,9 +418,12 @@ var App = {
                 console.log("handling some other file ", file_type);
                 break;
         }
+        console.log("PARSE END");
 
         // scrolling to json pane
-        // this.scrollToJSONPane();
+        this.scrollToJSONPane();
+
+        Materialize.toast("JSON created!", 3000);
 
         // all processed fine
         var json_string = JSON.stringify( json );
@@ -426,9 +431,9 @@ var App = {
         this.jsonPane.json = json;
         this.jsonPane.json_string = json_string;
 
-        Materialize.toast("JSON created!", 3000);
+        
 
-        _.defer( () => this.scrollToJSONPane(), 500 );
+        // _.defer( () => this.scrollToJSONPane(), 500 );
 
         return;
     },
@@ -479,10 +484,11 @@ var App = {
             scrollTop: scrollTo
         }, 550);
 
+        // PREVIEW BUG: not rendering the preview mode because of the bug in rendering
         // this mode will not affect anything
-        this.jsonPane.mode = "preview";
+        // this.jsonPane.mode = "preview";
         // for now let us manually change to preview window using materialize plugin
-        $('ul.tabs').tabs('select_tab', 'preview-window');
+        // $('ul.tabs').tabs('select_tab', 'preview-window');
 
     },
 
