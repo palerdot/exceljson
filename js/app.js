@@ -163,7 +163,7 @@ var App = {
 
                     try {
                         this.json = JSON.parse( this.json_string );
-                        console.log("VALID json ", this.json, this);
+                        console.log("VALID json ", new Date(), this.json);
                         is_valid_json = true;
                     } catch (e) {
                         console.log("json error ", e);
@@ -175,6 +175,7 @@ var App = {
 
                 // gives the json string for the textarea
                 JSONString: function () {
+                    console.log("getting JSONString ", new Date());
                     // if valid json, let us return properly formatted json
                     if (this.validJSON) {
                         var json = _.isEmpty( this.json ) ? this.defaultJSON : this.json;
@@ -359,6 +360,7 @@ var App = {
                         filename = (this.downloadFileName || "Porumai" ) + "." + file_type; 
                     // ref: https://github.com/eligrey/FileSaver.js
                     var file = new File([content], filename, {type: mime_type});
+
                     FileSaver.saveAs(file, filename);
                 },
             }
@@ -381,13 +383,13 @@ var App = {
         this.uploadPane.file = file;
 
         if (file_valid) {
-            console.log("Porumai! valid file");
+            console.log("valid file");
             // update the file valid status
             this.uploadPane.fileValid = true;
             // proceed to process the file content
             this.processFileContent( content );
         } else {
-            console.log("Porumai! FILE NOT VALID. Only CSV and TSV files are allowed");
+            console.log("FILE NOT VALID. Only CSV and TSV files are allowed");
             // update the file valid status
             this.uploadPane.fileValid = false;
         }
@@ -420,20 +422,16 @@ var App = {
         }
         console.log("PARSE END");
 
-        // scrolling to json pane
-        this.scrollToJSONPane();
-
-        Materialize.toast("JSON created!", 3000);
-
         // all processed fine
         var json_string = JSON.stringify( json );
         // updating the json string and json for the json pane
         this.jsonPane.json = json;
         this.jsonPane.json_string = json_string;
 
-        
+        // scrolling to json pane
+        this.scrollToJSONPane();
 
-        // _.defer( () => this.scrollToJSONPane(), 500 );
+        Materialize.toast("JSON created!", 3000);
 
         return;
     },
@@ -482,7 +480,9 @@ var App = {
 
         $("body").animate({
             scrollTop: scrollTo
-        }, 550);
+        }, 0, function () {
+            console.log("scrolling end ", new Date());
+        });
 
         // PREVIEW BUG: not rendering the preview mode because of the bug in rendering
         // this mode will not affect anything
@@ -526,6 +526,7 @@ var App = {
                 progress: function(e, file) {
                     var progress = Math.ceil( (e.loaded/e.total) * 100 );
                     self.uploadPane.progress = progress;
+                    console.log("progressing ", progress);
                     // for now we have to update the width manually through vue refs
                     // $( self.uploadPane.$refs.determinate ).css("width", progress+ "%");
                 },

@@ -9,7 +9,7 @@ var $ = gulpLoadPlugins();
 
 gulp.task('webpack', function() {
 
-    var is_production = false;
+    var is_production = true;
 
     var uglify_options = { compress: { drop_console: is_production ? true : false } };
 
