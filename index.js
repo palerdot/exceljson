@@ -21,5 +21,6 @@ $(document).ready(function() {
     // console.log("initing tabs");
     $('.tabs').tabs();
     // for now let us manually change to preview window using materialize plugin
-    $('ul.tabs').tabs('select_tab', 'preview-window');
+    // PREVIEW BUG: disabling preview stuffs for now
+    // $('ul.tabs').tabs('select_tab', 'preview-window');
 });

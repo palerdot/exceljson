@@ -198,10 +198,10 @@
                             <div class="nav-wrapper col s12 brown darken-1">
                                 <div class="col s8">
                                     <ul class="tabs tabs-transparent left">
-                                        <li class="tab">
+                                        <li class="tab" class="active">
                                             <a href="#edit-window">Edit</a>
                                         </li>
-                                        <li v-bind:class="isPreviewModeActive">
+                                        <li class="hide">
                                             <a class="active" href="#preview-window">Preview</a>
                                         </li>
                                     </ul>
@@ -216,8 +216,8 @@
                                 <div id="edit-window" class="col s12">
                                     <textarea class="json-window" v-on:change="handleJSONChange($event)" v-on:keyup="handleJSONChange($event)" v-model="JSONString"></textarea>
                                 </div>
-                                <div id="preview-window" class="col s12">
-                                    <div class="json-window" v-html="getPreviewJSON()"></div>
+                                <div id="preview-window" class="col s12 hide">
+                                    <div class="json-window" v-html=""></div>
                                 </div>
                             </div>
                             <div class="row no-bottom-margin">
